@@ -132,26 +132,32 @@ if movies is not None:
             ("✨ Balanced (Smart Mix)", "🧩 Similarity (Thematic Match)", "⭐ Quality (Predicted Rating)"),
             index=0,
             key="sort_radio",
-            on_change=update_filters, 
             help="Balanced combines both. Similarity finds sequels. Quality finds top-rated movies."
         )
         
+        # --- LOGIC ΓΙΑ ΤΑ DEFAULT VALUES ---
+        if "Similarity" in sort_option:
+            def_rating, def_votes = 0.0, 0
+        elif "Quality" in sort_option:
+            def_rating, def_votes = 3.5, 50
+        else: # Balanced
+            def_rating, def_votes = 2.5, 20
+            
         st.divider()
-        st.subheader("🎯 Filters (Auto-Adjusting)")
+        st.subheader("🎯 Filters")
         
-        # Sliders connected to Session State
         min_rating = st.slider(
             "Min Predicted Rating ⭐", 0.0, 5.0, 
-            value=st.session_state.min_rating_val, 
+            value=def_rating, 
             step=0.1,
-            key="min_rating_slider"
+            key=f"rating_{sort_option}" 
         )
         
         min_votes = st.slider(
             "Min Votes 👥", 0, 500, 
-            value=st.session_state.min_votes_val, 
+            value=def_votes, 
             step=10,
-            key="min_votes_slider"
+            key=f"votes_{sort_option}"
         )
         
         # Update session state if user moves slider manually
@@ -312,3 +318,4 @@ if movies is not None:
         else:
 
             st.error("No movies found! The automatic filters might be too strict for this specific movie.")
+
