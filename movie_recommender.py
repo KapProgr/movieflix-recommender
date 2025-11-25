@@ -13,7 +13,7 @@ st.set_page_config(page_title="Movieflix AI", layout="wide", page_icon="🍿")
 # ==========================================
 # 🔑 API KEY CONFIGURATION
 # ==========================================
-TMDB_API_KEY = "TMDB_API_KEY" 
+TMDB_API_KEY = st.secrets["TMDB_API_KEY"]
 
 # --- 1. DATA LOADING & API FUNCTIONS ---
 @st.cache_data
@@ -310,4 +310,5 @@ if movies is not None:
                        tooltip=['title', 'Rating']
                     ).interactive(), use_container_width=True)
         else:
+
             st.error("No movies found! The automatic filters might be too strict for this specific movie.")
