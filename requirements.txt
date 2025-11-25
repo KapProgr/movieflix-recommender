@@ -1,0 +1,7 @@
+streamlit
+pandas
+scikit-learn
+scikit-surprise
+altair
+requests
+numpy
