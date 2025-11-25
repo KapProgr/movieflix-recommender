@@ -4,4 +4,4 @@ scikit-learn
 scikit-surprise
 altair
 requests
-numpy
+numpy<2
