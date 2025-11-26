@@ -31,7 +31,7 @@ This project goes beyond basic recommendations by implementing a custom **"Smart
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/your-username/movieflix-recommender.git](https://github.com/your-username/movieflix-recommender.git)
+    git clone https://github.com/KapProgr/movieflix-recommender.git
     cd movieflix-recommender
     ```
 
