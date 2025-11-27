@@ -5,7 +5,7 @@ An advanced movie recommendation engine built with Python and Streamlit. It comb
 This project goes beyond basic recommendations by implementing a custom **"Smart Boosting"** algorithm that detects franchises (e.g., Avengers, Harry Potter) and handles time-decay logic.
 
 ## 🚀 Live Demo
-**[Click here to view the App](https://house-price-valuator.streamlit.app/)**
+**[Click here to view the App](https://movieflix-recommender.streamlit.app/)**
 
 ## ✨ Key Features
 
