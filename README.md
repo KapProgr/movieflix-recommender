@@ -9,13 +9,13 @@ This project goes beyond basic recommendations by implementing a custom **"Smart
 
 ## ✨ Key Features
 
-* **🧠 Hybrid Engine:** Combines user voting patterns (SVD Matrix Factorization) with metadata similarity (Cosine Similarity).
-* **⚖️ Balanced Logic:** A "Smart Mix" mode that automatically balances between movie quality and thematic similarity.
-* **🚀 Smart Title Boosting:** Custom Regex logic to detect franchises (e.g., Marvel, Star Wars) and prioritize sequels.
-* **⏳ Time-Aware:** Implements "Era Penalty" to distinguish between classic and modern reboots (e.g., filtering out 1998 Avengers when looking for MCU).
-* **🎨 Genre Protection:** "Anti-Cartoon" logic to separate Live Action from Animation matches.
-* **📊 Analytics Dashboard:** Interactive charts showing genre distribution and prediction vs. global average.
-* **🔌 TMDB API Integration:** Fetches real-time posters and plot overviews.
+* ** Hybrid Engine:** Combines user voting patterns (SVD Matrix Factorization) with metadata similarity (Cosine Similarity).
+* ** Balanced Logic:** A "Smart Mix" mode that automatically balances between movie quality and thematic similarity.
+* ** Smart Title Boosting:** Custom Regex logic to detect franchises (e.g., Marvel, Star Wars) and prioritize sequels.
+* ** Time-Aware:** Implements "Era Penalty" to distinguish between classic and modern reboots (e.g., filtering out 1998 Avengers when looking for MCU).
+* ** Genre Protection:** "Anti-Cartoon" logic to separate Live Action from Animation matches.
+* ** Analytics Dashboard:** Interactive charts showing genre distribution and prediction vs. global average.
+* ** TMDB API Integration:** Fetches real-time posters and plot overviews.
 
 ## 🛠️ Tech Stack
 
