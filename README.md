@@ -6,7 +6,7 @@ This project goes beyond basic recommendations by implementing a custom "Smart B
 
 ## Live Demo
 
-[Click here to view the App](#)
+[Click here to view the App](https://movieflix-recommender.streamlit.app/)
 
 ## Key Features
 
