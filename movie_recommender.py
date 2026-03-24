@@ -8,10 +8,10 @@ import requests
 import re 
 
 # --- PAGE CONFIGURATION ---
-st.set_page_config(page_title="Movieflix AI", layout="wide", page_icon="🍿")
+st.set_page_config(page_title="Movieflix AI", layout="wide", page_icon="MF")
 
 # ==========================================
-# 🔑 API KEY CONFIGURATION
+# API KEY CONFIGURATION
 # ==========================================
 TMDB_API_KEY = st.secrets["TMDB_API_KEY"]
 
@@ -119,23 +119,23 @@ def update_filters():
 # --- 4. SIDEBAR UI ---
 if movies is not None:
     with st.sidebar:
-        st.header("🎛️ Control Center")
+        st.header("Control Center")
         user_id = st.number_input("User ID", 1, 610, 1)
         selected_movie = st.selectbox("Select a movie you like:", movies['title'].values)
         
         st.divider()
-        st.subheader("⚙️ Recommendation Logic")
+        st.subheader("Recommendation Logic")
         
         # Radio Button with Callback
         sort_option = st.radio(
             "Sort by:",
-            ("✨ Balanced (Smart Mix)", "🧩 Similarity (Thematic Match)", "⭐ Quality (Predicted Rating)"),
+            ("Balanced (Smart Mix)", "Similarity (Thematic Match)", "Quality (Predicted Rating)"),
             index=0,
             key="sort_radio",
             help="Balanced combines both. Similarity finds sequels. Quality finds top-rated movies."
         )
         
-        # --- LOGIC ΓΙΑ ΤΑ DEFAULT VALUES ---
+        # --- Default values logic ---
         if "Similarity" in sort_option:
             def_rating, def_votes = 0.0, 0
         elif "Quality" in sort_option:
@@ -144,17 +144,17 @@ if movies is not None:
             def_rating, def_votes = 2.5, 20
             
         st.divider()
-        st.subheader("🎯 Filters")
+        st.subheader("Filters")
         
         min_rating = st.slider(
-            "Min Predicted Rating ⭐", 0.0, 5.0, 
+            "Min Predicted Rating", 0.0, 5.0, 
             value=def_rating, 
             step=0.1,
             key=f"rating_{sort_option}" 
         )
         
         min_votes = st.slider(
-            "Min Votes 👥", 0, 500, 
+            "Min Votes", 0, 500, 
             value=def_votes, 
             step=10,
             key=f"votes_{sort_option}"
@@ -165,7 +165,7 @@ if movies is not None:
         st.session_state.min_votes_val = min_votes
         
         unique_genres = set('|'.join(movies['genres']).split('|'))
-        genre_filter = st.selectbox("Genre Filter 🎭", ["All"] + list(sorted(unique_genres)))
+        genre_filter = st.selectbox("Genre Filter", ["All"] + list(sorted(unique_genres)))
 
 # --- 5. RECOMMENDATION ENGINE ---
 def get_recommendations(user_id, movie_title):
@@ -246,18 +246,18 @@ def get_recommendations(user_id, movie_title):
     return recs.head(10)
 
 # --- 6. MAIN UI LAYOUT ---
-st.title("🍿 Movieflix AI")
+st.title("Movieflix AI")
 st.markdown("### Intelligent Hybrid Recommendation System")
 
 if movies is not None:
-    if st.button("✨ Get Recommendations ✨", type="primary"):
+    if st.button("Get Recommendations", type="primary"):
         with st.spinner('Crunching numbers...'):
             recs = get_recommendations(user_id, selected_movie)
         
         if recs is not None and not recs.empty:
             st.success(f"Showing top matches for **{selected_movie}**")
             
-            tab1, tab2 = st.tabs(["🎬 Movies", "📊 Analytics"])
+            tab1, tab2 = st.tabs(["Movies", "Analytics"])
             
             with tab1:
                 for i, row in recs.iterrows():
@@ -275,19 +275,19 @@ if movies is not None:
                             
                             # Debug info depending on mode
                             if "Similarity" in sort_option:
-                                 st.markdown(f"🎯 **Match Score:** `{row['similarity_score']:.2f}`")
+                                st.markdown(f"**Match Score:** `{row['similarity_score']:.2f}`")
                             elif "Balanced" in sort_option:
-                                 st.markdown(f"⚖️ **Hybrid Score:** `{row['hybrid_score']:.2f}`")
+                                st.markdown(f"**Hybrid Score:** `{row['hybrid_score']:.2f}`")
 
-                            with st.expander("📖 Plot Overview", expanded=True):
+                            with st.expander("Plot Overview", expanded=True):
                                 st.write(overview_text)
                             
                             c1, c2 = st.columns(2)
-                            with c1: st.metric("Your Prediction", f"⭐ {row['est_rating']:.1f}/5")
-                            with c2: st.metric("Audience Score", f"👥 {row['avg_rating']:.1f} ({int(row['num_votes'])})")
+                            with c1: st.metric("Your Prediction", f"{row['est_rating']:.1f}/5")
+                            with c2: st.metric("Audience Score", f"{row['avg_rating']:.1f} ({int(row['num_votes'])})")
                             
                             if pd.notnull(row['imdbId']):
-                                st.markdown(f"[👉 View on IMDB](https://www.imdb.com/title/tt{int(row['imdbId']):07d}/)")
+                                st.markdown(f"[View on IMDB](https://www.imdb.com/title/tt{int(row['imdbId']):07d}/)")
                         st.divider()
 
             with tab2:
@@ -318,4 +318,3 @@ if movies is not None:
         else:
 
             st.error("No movies found! The automatic filters might be too strict for this specific movie.")
-
